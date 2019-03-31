@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navannoucement"
+            android:icon="@drawable/annoucement"
+            android:title="Annoucement" />
+        <item
+            android:id="@+id/navevent"
+            android:icon="@drawable/event"
+            android:title="Event" />
+        <item
+            android:id="@+id/navadmin"
+            android:icon="@drawable/admin"
+            android:visible="false"
+            android:title="Admin Panel"
+            />
+        <item
+            android:id="@+id/navpayment"
+            android:icon="@drawable/payment"
+            android:title="Payment" />
+
+
+    </group>
+
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/navsetting"
+                android:icon="@drawable/settings"
+                android:title="Setting" />
+            <item
+                android:id="@+id/navmembers"
+                android:icon="@drawable/member"
+                android:title="Family Members" />
+        </menu>
+    </item>
+
+</menu>

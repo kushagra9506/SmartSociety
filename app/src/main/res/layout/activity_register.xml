@@ -1,0 +1,160 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountActivity.RegisterActivity"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/regUserPhoto"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:onClick="selectimage"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="8dp"
+                app:srcCompat="@drawable/userphoto" />
+
+
+
+            <EditText
+                android:background="@drawable/reg_edittext_style"
+                android:id="@+id/regName"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Name"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                />
+
+            <EditText
+                android:background="@drawable/reg_edittext_style"
+                android:id="@+id/regRoomNo"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="Room No"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                />
+            <EditText
+                android:background="@drawable/reg_edittext_style"
+                android:id="@+id/regMail"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:hint="Email"
+                android:layout_marginTop="20dp"
+                />
+
+            <EditText
+                android:background="@drawable/reg_edittext_style"
+                android:hint="Password"
+                android:id="@+id/regPassword"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+
+                android:ems="10"
+                android:inputType="textPassword"
+                />
+
+            <EditText
+                android:background="@drawable/reg_edittext_style"
+                android:hint="Confirm Password"
+                android:id="@+id/regPassword2"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:layout_gravity="center"
+                android:inputType="textPassword"
+                />
+
+            <RadioGroup
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:id="@+id/Batch"
+                android:layout_gravity="center"
+
+                >
+
+
+                <RadioButton
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="House Head"
+                    android:textSize="22sp"
+                    android:textColorHint="@color/colorPrimary"
+                    android:id="@+id/Parent"
+                    android:textColor="@android:color/darker_gray"
+                    />
+
+
+            </RadioGroup>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+
+                <Button
+                    android:id="@+id/regBtn"
+                    android:layout_width="151dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/reg_btn_style"
+                    android:text="Register"
+                    android:onClick="Register"
+                    android:textColor="#ffffff"
+                    />
+
+                <ProgressBar
+                    android:id="@+id/regProgressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:id="@+id/goToLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="Already have an account? Login"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="goback"
+               />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>
