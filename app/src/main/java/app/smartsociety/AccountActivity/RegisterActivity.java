@@ -126,7 +126,7 @@ ImageView imageView;
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
-            Picasso.with(getBaseContext()).load(mImageUri).into(imageView);
+            Picasso.get().load(mImageUri).into(imageView);
 
         }
     }

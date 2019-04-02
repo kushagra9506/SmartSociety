@@ -53,10 +53,11 @@ public class Dashboard extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
         View headerView = navigationView.getHeaderView(0);
-        CircleImageView imageView = navigationView.findViewById(R.id.profileimage);
+        CircleImageView imageView = headerView.findViewById(R.id.navprofileimage);
+        Common common = new Common();
         Picasso.get().load(Common.commonregister.getImage()).into(imageView);
-        TextView navUsername = (TextView) navigationView.findViewById(R.id.navName);
-        TextView navEmail = navigationView.findViewById(R.id.navEmail);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.navName);
+        TextView navEmail = headerView.findViewById(R.id.navEmail);
         navUsername.setText(Common.commonregister.getName());
         navEmail.setText(Common.commonregister.getEmail());
         if (Common.admin){

@@ -43,7 +43,7 @@ public class Welcome_slider_1 extends AppCompatActivity {
     private MyPagerAdapter pagerAdapter;
 
     FirebaseAuth auth;
-    private DatabaseReference fdb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class Welcome_slider_1 extends AppCompatActivity {
             finish();
         }
 
-        fdb = FirebaseDatabase.getInstance().getReference("Register");
+
 
         setStatusBarTransparent();
         setContentView(R.layout.activity_welcome_slider_1);
@@ -76,9 +76,7 @@ public class Welcome_slider_1 extends AppCompatActivity {
             }
         });
 
-        if (auth.getCurrentUser() != null){
-           checkadmin();
-        }
+
         //when user press the next button. Show Next Slide
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,33 +133,7 @@ public class Welcome_slider_1 extends AppCompatActivity {
         editor.apply();
     }
 
-    private void checkadmin() {
-        FirebaseMessaging.getInstance().subscribeToTopic("Fire");
-        FirebaseMessaging.getInstance().subscribeToTopic("Intruder");
-        FirebaseMessaging.getInstance().subscribeToTopic("Emergency");
-        fdb.child(Objects.requireNonNull(auth.getUid())).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    Register register = dataSnapshot.getValue(Register.class);
-                    assert register != null;
-                    Common.admin = register.getAdmin();
-                    Common.commonregister = register;
-                    loadnext();
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void loadnext() {
-        finish();
-        startActivity(new Intent(this,Dashboard.class));
-    }
 
     private void setDotStatus(int page) {
         layoutDot.removeAllViews();
@@ -182,16 +154,9 @@ public class Welcome_slider_1 extends AppCompatActivity {
 
     //Function to start main activity
     private void startMainActivity() {
-        if (auth.getCurrentUser() != null){
-            startActivity(new Intent(Welcome_slider_1.this, Dashboard.class));
-            finish();
-        }
-        else {
             setFirstTimeStartStatus(false);
             startActivity(new Intent(Welcome_slider_1.this, LoginActivity.class));
             finish();
-        }
-
     }
 
     //Make status bar transparent

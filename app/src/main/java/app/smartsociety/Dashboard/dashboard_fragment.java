@@ -65,13 +65,23 @@ public class dashboard_fragment extends Fragment {
 
         mRequestQue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
 
+        complaints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.dashframe,new ComplaintFragment());
+                ft.addToBackStack(null);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.commit();
+            }
+        });
 
 
 
         annoucement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Annoucement annoucement = new Annoucement();
+
                 assert getFragmentManager() != null;
                 FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.dashframe,new Annoucement());
