@@ -27,6 +27,7 @@ import java.util.Objects;
 
 import app.smartsociety.Common.Common;
 import app.smartsociety.Dashboard.Dashboard;
+import app.smartsociety.GateKeeper.GateDash;
 import app.smartsociety.Model.Register;
 import app.smartsociety.R;
 
@@ -70,60 +71,92 @@ public class LoginActivity extends AppCompatActivity {
         semail = email.getText().toString();
         spassword = password.getText().toString();
         if (!semail.isEmpty() && !spassword.isEmpty()){
-            try{
-                auth.signInWithEmailAndPassword(semail,spassword)
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                    FirebaseUser user = auth.getCurrentUser();
-                                    assert user != null;
-                                    if (user.isEmailVerified())
-                                    {
-                                        checkadmin();
 
-                                    }
-                                    else{
-                                        createtoast("Please verify your email to access the Application");
-                                    }
-
-
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    try{
-
-                                        throw task.getException();
-
-                                    }
-                                    catch (FirebaseAuthInvalidCredentialsException e)
-                                    {
-                                        progressBar.setVisibility(View.INVISIBLE);
-                                        btnlogin.setVisibility(View.VISIBLE);
-                                        Toast.makeText(LoginActivity.this,"Authentication Failed",Toast.LENGTH_LONG).show();
+            if (semail.contains("gatekeeper")){
+                auth.signInWithEmailAndPassword(semail,spassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                         progressBar.setVisibility(View.INVISIBLE);
+                         startActivity(new Intent(LoginActivity.this, GateDash.class));
+                        }
+                        else{
+                            try {
+                                throw Objects.requireNonNull(task.getException());
+                            } catch (FirebaseAuthInvalidCredentialsException e)
+                            {
+                                progressBar.setVisibility(View.INVISIBLE);
+                                btnlogin.setVisibility(View.VISIBLE);
+                                Toast.makeText(LoginActivity.this,"Authentication Failed",Toast.LENGTH_LONG).show();
 
 
-                                    }
-                                    catch (Exception e)
-                                    {
-                                        progressBar.setVisibility(View.INVISIBLE);
-                                        btnlogin.setVisibility(View.VISIBLE);
-                                        Toast.makeText(LoginActivity.this,"",Toast.LENGTH_LONG).show();
-
-                                    }
-                                }
-
-                                // ...
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                        });
+
+                        }
+                    }
+                });
+
+            }else{
+                try{
+                    auth.signInWithEmailAndPassword(semail,spassword)
+                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        progressBar.setVisibility(View.INVISIBLE);
+                                        FirebaseUser user = auth.getCurrentUser();
+                                        assert user != null;
+                                        if (user.isEmailVerified())
+                                        {
+                                            checkadmin();
+
+                                        }
+                                        else{
+                                            createtoast("Please verify your email to access the Application");
+                                        }
+
+
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        try{
+
+                                            throw task.getException();
+
+                                        }
+                                        catch (FirebaseAuthInvalidCredentialsException e)
+                                        {
+                                            progressBar.setVisibility(View.INVISIBLE);
+                                            btnlogin.setVisibility(View.VISIBLE);
+                                            Toast.makeText(LoginActivity.this,"Authentication Failed",Toast.LENGTH_LONG).show();
+
+
+                                        }
+                                        catch (Exception e)
+                                        {
+                                            progressBar.setVisibility(View.INVISIBLE);
+                                            btnlogin.setVisibility(View.VISIBLE);
+                                            Toast.makeText(LoginActivity.this,"",Toast.LENGTH_LONG).show();
+
+                                        }
+                                    }
+
+                                    // ...
+                                }
+                            });
+                }
+                catch (Exception e) {
+
+
+                }
+
             }
-            catch (Exception e) {
-
-
-            }
-
+            }else{
+            createtoast("Please enter the complete details");
         }
+
 
     }
 

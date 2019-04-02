@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +52,12 @@ public class Dashboard extends AppCompatActivity
             Menu navmenu = navigationView.getMenu();
             navmenu.findItem(R.id.navadmin).setVisible(true);
         }
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.dashframe,new dashboard_fragment());
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
     }
 
     @Override
@@ -60,6 +68,7 @@ public class Dashboard extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+
     }
 
     @Override
@@ -86,6 +95,8 @@ public class Dashboard extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -95,12 +106,16 @@ public class Dashboard extends AppCompatActivity
         if (id == R.id.navannoucement) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.dashframe,new Annoucement());
+            ft.addToBackStack(null);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
 
         } else if (id == R.id.navevent) {
 
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.dashframe,new EventActivity());
+            ft.addToBackStack(null);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
 
         } else if (id == R.id.navpayment) {
@@ -118,5 +133,8 @@ public class Dashboard extends AppCompatActivity
 
     public void setActionBarTitle(String your_title) {
         Objects.requireNonNull(getSupportActionBar()).setTitle(your_title);
+    }
+
+    public void distresscall(View view) {
     }
 }

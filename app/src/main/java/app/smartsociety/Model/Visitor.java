@@ -5,12 +5,12 @@ import java.util.Date;
 public class Visitor {
 
     String name,image,contact,roomno;
-    Date intime,outtime;
+     String intime,outtime;
 
     public Visitor() {
     }
 
-    public Visitor(String name, String image, String contact, String roomno, Date intime, Date outtime) {
+    public Visitor(String name, String image, String contact, String roomno, String intime, String outtime) {
         this.name = name;
         this.image = image;
         this.contact = contact;
@@ -19,11 +19,15 @@ public class Visitor {
         this.outtime = outtime;
     }
 
-    public Date getOutime() {
+    public void setIntime(String intime) {
+        this.intime = intime;
+    }
+
+    public String getOuttime() {
         return outtime;
     }
 
-    public void setOutime(Date outtime) {
+    public void setOuttime(String outtime) {
         this.outtime = outtime;
     }
 
@@ -59,11 +63,8 @@ public class Visitor {
         this.roomno = roomno;
     }
 
-    public Date getIntime() {
+    public String getIntime() {
         return intime;
     }
 
-    public void setIntime(Date intime) {
-        this.intime = intime;
-    }
 }

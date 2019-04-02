@@ -107,16 +107,12 @@ user.child(Objects.requireNonNull(auth.getUid())).addValueEventListener(new Valu
 
         if (update){
             ann.child(Key).setValue(event);
-            Fragment newFragment = new EventActivity();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.commit();
+            finish();
 
         }
         else{
             ann.push().setValue(event);
-            Fragment newFragment = new EventActivity();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.commit();
+           finish();
         }
     }
 }

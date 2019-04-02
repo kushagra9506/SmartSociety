@@ -67,17 +67,11 @@ public class Addannoucement extends AppCompatActivity {
 
             if (update){
                 ann.child(Key).setValue(annoucement);
-                Fragment newFragment = new Annoucement();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.commit();
                 finish();
 
             }
             else{
                 ann.push().setValue(annoucement);
-                Fragment newFragment = new Annoucement();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.commit();
                 finish();
             }
         }

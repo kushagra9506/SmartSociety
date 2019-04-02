@@ -10,48 +10,141 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
        <ImageView
-           android:layout_width="match_parent"
-           android:layout_height="300dp"
+           android:layout_margin="10dp"
+           android:layout_width="wrap_content"
+           android:layout_height="200dp"
            android:src="@drawable/visitor"
            android:id="@+id/visitorimage"
+           android:layout_gravity="center"
+           android:scaleType="fitXY"
            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/visitorname"
-            android:textSize="22sp"
-            android:layout_margin="5dp"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/visitorcontact"
-            android:textSize="22sp"
 
-            android:layout_margin="10dp"
-            />
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/visitorroomno"
-            android:textSize="22sp"
-            android:layout_margin="5dp"
-            />
-        <TextView
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:text="Name :"
+                android:textSize="22sp"
+                android:layout_margin="5dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:id="@+id/visitorname"
+                android:textSize="22sp"
+                android:layout_margin="5dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/visitorintime"
-            android:textSize="22sp"
-            android:layout_margin="5dp"
-            />
-        <TextView
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:text="Contact :"
+                android:textSize="22sp"
+                android:layout_margin="5dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:id="@+id/visitorcontact"
+                android:textSize="22sp"
+                android:layout_margin="5dp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/visitorouttime"
-            android:textSize="22sp"
-            android:visibility="gone"
-            android:layout_margin="5dp"
-            />
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:text="Room no :"
+                android:textSize="22sp"
+                android:layout_margin="5dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:id="@+id/visitorroomno"
+                android:textSize="22sp"
+                android:layout_margin="5dp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:text="Intime :"
+                android:textSize="22sp"
+                android:layout_margin="5dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:id="@+id/visitorintime"
+                android:textSize="22sp"
+                android:layout_margin="5dp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:text="Outtime :"
+                android:textSize="22sp"
+                android:layout_margin="5dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:id="@+id/visitorouttime"
+                android:textSize="22sp"
+                android:layout_margin="5dp"
+                />
+
+        </LinearLayout>
+
+
+
+
+
 
 
     </LinearLayout>

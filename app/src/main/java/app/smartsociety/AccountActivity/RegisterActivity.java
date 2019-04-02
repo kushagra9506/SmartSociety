@@ -252,9 +252,15 @@ ImageView imageView;
             fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    mDialog.dismiss();
-                    profileimage = Objects.requireNonNull(fileReference.getDownloadUrl()).toString();
-                    nowreg();
+                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            mDialog.dismiss();
+                            profileimage = uri.toString();
+                            nowreg();
+                        }
+                    });
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
