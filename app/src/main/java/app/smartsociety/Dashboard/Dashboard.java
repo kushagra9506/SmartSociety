@@ -12,17 +12,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
 import app.smartsociety.AccountActivity.LoginActivity;
 import app.smartsociety.Common.Common;
 import app.smartsociety.R;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,6 +52,13 @@ public class Dashboard extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
+        View headerView = navigationView.getHeaderView(0);
+        CircleImageView imageView = navigationView.findViewById(R.id.profileimage);
+        Picasso.get().load(Common.commonregister.getImage()).into(imageView);
+        TextView navUsername = (TextView) navigationView.findViewById(R.id.navName);
+        TextView navEmail = navigationView.findViewById(R.id.navEmail);
+        navUsername.setText(Common.commonregister.getName());
+        navEmail.setText(Common.commonregister.getEmail());
         if (Common.admin){
             Menu navmenu = navigationView.getMenu();
             navmenu.findItem(R.id.navadmin).setVisible(true);
@@ -88,6 +99,12 @@ public class Dashboard extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.signout) {
             auth.signOut();
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("Fire");
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("Intruder");
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("Emergency");
+            FirebaseMessaging.getInstance().subscribeToTopic("Annoucement");
+            FirebaseMessaging.getInstance().subscribeToTopic("Event");
+
             startActivity(new Intent(this, LoginActivity.class));
             return true;
         }

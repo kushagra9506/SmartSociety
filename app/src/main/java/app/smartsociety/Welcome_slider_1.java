@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Objects;
 
@@ -135,6 +136,9 @@ public class Welcome_slider_1 extends AppCompatActivity {
     }
 
     private void checkadmin() {
+        FirebaseMessaging.getInstance().subscribeToTopic("Fire");
+        FirebaseMessaging.getInstance().subscribeToTopic("Intruder");
+        FirebaseMessaging.getInstance().subscribeToTopic("Emergency");
         fdb.child(Objects.requireNonNull(auth.getUid())).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -142,6 +146,7 @@ public class Welcome_slider_1 extends AppCompatActivity {
                     Register register = dataSnapshot.getValue(Register.class);
                     assert register != null;
                     Common.admin = register.getAdmin();
+                    Common.commonregister = register;
                     loadnext();
                 }
             }

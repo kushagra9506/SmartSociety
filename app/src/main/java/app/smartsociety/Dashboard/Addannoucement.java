@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import app.smartsociety.Common.Common;
 import app.smartsociety.Model.Annoucements;
 import app.smartsociety.R;
 
@@ -28,6 +29,7 @@ public class Addannoucement extends AppCompatActivity {
     private String user,name;
     private String Key;
     private boolean update;
+    Common common = new Common();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,11 +69,15 @@ public class Addannoucement extends AppCompatActivity {
 
             if (update){
                 ann.child(Key).setValue(annoucement);
+                String message = "There is Annoucement for you Please Check it";
+                common.sendNotification("Annoucement",message,this);
                 finish();
 
             }
             else{
                 ann.push().setValue(annoucement);
+                String message = "There is Annoucement for you Please Check it";
+                common.sendNotification("Annoucement",message,this);
                 finish();
             }
         }

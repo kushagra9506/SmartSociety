@@ -6,12 +6,27 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
+import app.smartsociety.Common.Common;
 import app.smartsociety.R;
 
 public class dashboard_fragment extends Fragment {
@@ -19,6 +34,8 @@ public class dashboard_fragment extends Fragment {
     View v;
 
     CardView annoucement,event,firealarm,intruderalarm,emergency,secretarypanel,payment,complaints;
+    private RequestQueue mRequestQue;
+    private String URL = "https://fcm.googleapis.com/fcm/send";
 
     public dashboard_fragment() {
         // Required empty public constructor
@@ -46,6 +63,8 @@ public class dashboard_fragment extends Fragment {
         emergency = v.findViewById(R.id.Emergency);
         secretarypanel = v.findViewById(R.id.DashAdminPanel);
 
+        mRequestQue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+
 
 
 
@@ -61,7 +80,82 @@ public class dashboard_fragment extends Fragment {
                 ft.commit();
             }
         });
+        event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Annoucement annoucement = new Annoucement();
+                assert getFragmentManager() != null;
+                FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.dashframe,new EventActivity());
+                ft.addToBackStack(null);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.commit();
+            }
+        });
+        
+        firealarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String body = "There is fire at" + Common.commonregister.getRoomno();
+                sendNotification("Fire",body);
+            }
+        });
+        intruderalarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String body = "There is Intruder at" + Common.commonregister.getRoomno();
+                sendNotification("Intruder",body);
+            }
+        });
+        emergency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String body = "There is Emergency at" + Common.commonregister.getRoomno();
+                sendNotification("Emergency",body);
+            }
+        });
 //
 
+    }
+    private void sendNotification(String type, String body) {
+
+        JSONObject json = new JSONObject();
+        try {
+            json.put("to","/topics/"+type);
+            JSONObject notificationObj = new JSONObject();
+            notificationObj.put("title",type);
+            notificationObj.put("body",body);
+            json.put("notification",notificationObj);
+
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL,
+                    json,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            Log.d("MUR", "onResponse: ");
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("MUR", "onError: "+error.networkResponse);
+                }
+            }
+            ){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String,String> header = new HashMap<>();
+                    header.put("content-type","application/json");
+                    header.put("authorization","key=\n" + "AIzaSyCGd2gZbgcDbQVk1tm3yTq_w8JYcSHBSdk");
+                    return header;
+                }
+            };
+            mRequestQue.add(request);
+        }
+        catch (JSONException e)
+
+        {
+            e.printStackTrace();
+        }
     }
 }

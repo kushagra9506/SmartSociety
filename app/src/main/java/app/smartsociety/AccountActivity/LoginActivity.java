@@ -168,6 +168,7 @@ public class LoginActivity extends AppCompatActivity {
                     Register register = dataSnapshot.getValue(Register.class);
                     assert register != null;
                     Common.admin = register.getAdmin();
+                    Common.commonregister = register;
                     loadnext();
                 }
             }

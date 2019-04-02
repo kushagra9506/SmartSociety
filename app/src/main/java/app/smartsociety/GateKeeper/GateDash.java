@@ -170,7 +170,7 @@ public class GateDash extends AppCompatActivity {
                   holder.outime.setText(model.getOuttime());
                   holder.outime.setVisibility(View.VISIBLE);
               }
-                Picasso.with(getBaseContext()).load(model.getImage()).into(holder.personimage);
+                Picasso.get().load(model.getImage()).into(holder.personimage);
 
             }
         };
@@ -419,7 +419,7 @@ public class GateDash extends AppCompatActivity {
 
                 holder.name.setText(model.getName());
                 holder.contact.setText(model.getContact());
-                Picasso.with(getBaseContext()).load(model.getImage()).into(holder.personimage);
+                Picasso.get().load(model.getImage()).into(holder.personimage);
 
                 holder.roomno.setText(model.getRoomno());
                 holder.intime.setText(model.getIntime());
@@ -428,7 +428,7 @@ public class GateDash extends AppCompatActivity {
                 }
                 else
                     holder.outime.setVisibility(View.GONE);
-                Picasso.with(getBaseContext()).load(model.getImage()).into(holder.personimage);
+                Picasso.get().load(model.getImage()).into(holder.personimage);
 
             }
         };

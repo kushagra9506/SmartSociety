@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+import app.smartsociety.Common.Common;
 import app.smartsociety.Model.Event;
 import app.smartsociety.Model.Register;
 import app.smartsociety.R;
@@ -33,6 +34,7 @@ public class Addevent extends AppCompatActivity {
     private boolean update;
     FirebaseAuth auth;
     private String sname,roomno;
+    Common common  = new Common();
 
 
     @Override
@@ -107,11 +109,15 @@ user.child(Objects.requireNonNull(auth.getUid())).addValueEventListener(new Valu
 
         if (update){
             ann.child(Key).setValue(event);
+            String message = "There is Annoucement for you Please Check it";
+            common.sendNotification("Annoucement",message,this);
             finish();
 
         }
         else{
             ann.push().setValue(event);
+            String message = "There is Annoucement for you Please Check it";
+            common.sendNotification("Annoucement",message,this);
            finish();
         }
     }
