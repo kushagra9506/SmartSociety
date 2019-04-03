@@ -87,7 +87,7 @@ ImageView imageView;
         imageView = findViewById(R.id.regUserPhoto);
         progressBar = findViewById(R.id.regProgressBar);
         name = findViewById(R.id.regName);
-        roomno = findViewById(R.id.regRoomNo);
+        roomno = findViewById(R.id.regRoomno);
         password = findViewById(R.id.regPassword);
         conpassword = findViewById(R.id.regPassword2);
         email = findViewById(R.id.regMail);
@@ -104,7 +104,7 @@ ImageView imageView;
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != -1) {
-
+                    sroomno = parent.getItemAtPosition(position).toString();
                 }
 
             }
@@ -168,7 +168,6 @@ ImageView imageView;
     private void nowreg(){
         if (!profileimage.isEmpty()) {
             sname = name.getText().toString();
-            sroomno = roomno.getText().toString();
             spassword = password.getText().toString();
             sconpassword = conpassword.getText().toString();
             semail = email.getText().toString();
@@ -232,6 +231,7 @@ ImageView imageView;
                                                             progressBar.setVisibility(View.INVISIBLE);
                                                             createtoast("Registration is done successfully, Please verify  your email id");
                                                             finish();
+                                                            auth.signOut();
                                                             startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
 
                                                         }
