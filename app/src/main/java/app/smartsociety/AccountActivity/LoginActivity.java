@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
-                                        progressBar.setVisibility(View.INVISIBLE);
+
                                         FirebaseUser user = auth.getCurrentUser();
                                         assert user != null;
                                         if (user.isEmailVerified())
@@ -187,6 +187,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadnext() {
+        progressBar.setVisibility(View.INVISIBLE);
         btnlogin.setVisibility(View.VISIBLE);
         startActivity(new Intent(LoginActivity.this, Dashboard.class));
         finish();

@@ -87,10 +87,11 @@ ImageView imageView;
         imageView = findViewById(R.id.regUserPhoto);
         progressBar = findViewById(R.id.regProgressBar);
         name = findViewById(R.id.regName);
-        roomno = findViewById(R.id.regRoomno);
+        spinner = findViewById(R.id.regRoomno);
         password = findViewById(R.id.regPassword);
         conpassword = findViewById(R.id.regPassword2);
         email = findViewById(R.id.regMail);
+
 
 
         Roomno = common.roomno();

@@ -27,6 +27,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -47,16 +49,19 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
+import app.smartsociety.AccountActivity.RegisterActivity;
 import app.smartsociety.Common.Common;
 import app.smartsociety.Dashboard.Addannoucement;
 import app.smartsociety.Model.Annoucements;
 import app.smartsociety.Model.Visitor;
 import app.smartsociety.R;
 import app.smartsociety.ViewHolder.VisitorViewHolder;
+import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class GateDash extends AppCompatActivity {
 
@@ -78,17 +83,19 @@ public class GateDash extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     FirebaseRecyclerAdapter<Visitor, VisitorViewHolder> adapter;
     private FirebaseRecyclerOptions<Visitor> visitor;
-
+    MaterialSpinner spinner;
 
     ProgressDialog progressDialog;
     FirebaseStorage storage;
     StorageReference mstorage;
 
-
+    ArrayList<String> Roomno = new ArrayList<>();
     Uri uri;
 
     FirebaseRecyclerAdapter<Visitor, VisitorViewHolder> searchadapter;
     private FirebaseRecyclerOptions<Visitor> searchvisitor;
+    private String sroomno;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,8 +109,9 @@ public class GateDash extends AppCompatActivity {
         imageView =  findViewById(R.id.addvisitorimage);
         name = findViewById(R.id.addvisitorname);
         contact = findViewById(R.id.addvisitorcontact);
-        roomno = findViewById(R.id.addvisitingroom);
+        spinner = findViewById(R.id.addvisitingroom);
         mSearchField = findViewById(R.id.search_field);
+        Roomno = common.roomno();
 
         db = FirebaseDatabase.getInstance().getReference("Visitor");
         mstorage = storage.getReference("Visitorimages/");
@@ -115,7 +123,25 @@ public class GateDash extends AppCompatActivity {
         ((LinearLayoutManager) layoutManager).setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(GateDash.this, android.R.layout.simple_spinner_item,Roomno);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != -1) {
+                    sroomno = parent.getItemAtPosition(position).toString();
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,7 +219,7 @@ public class GateDash extends AppCompatActivity {
 
     public void Submit(View view) {
        String date = df.format(Calendar.getInstance().getTime());
-        Visitor visitor = new Visitor(name.getText().toString(),image,contact.getText().toString(),roomno.getText().toString(),date,null);
+        Visitor visitor = new Visitor(name.getText().toString(),image,contact.getText().toString(),sroomno,date,null);
         db.push().setValue(visitor);
 
         common.createToast("Details, Submitted",GateDash.this);

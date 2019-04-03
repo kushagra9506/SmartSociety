@@ -43,14 +43,15 @@
 
 
             <fr.ganfra.materialspinner.MaterialSpinner
-                android:layout_width="match_parent"
+                android:layout_width="256dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:id="@+id/regRoomno"
                 app:ms_arrowColor="@color/colorPrimaryDark"
                 app:ms_arrowSize="10dp"
                 app:ms_floatingLabelColor="@android:color/black"
-                app:ms_floatingLabelText="Select the Room"
+                android:layout_gravity="center"
+                app:ms_floatingLabelText="Selected the Room"
                 app:ms_hint="Please choose the Roomno"
                 app:ms_hintColor="@color/colorPrimary"
                 app:ms_multiline="true"
