@@ -118,7 +118,7 @@ public class Annoucement extends Fragment {
 
                 holder.Title.setText(model.getTitle());
                 holder.date.setText(model.getDate());
-                holder.message.setText(model.getDate());
+                holder.message.setText(model.getMessage());
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
@@ -154,7 +154,7 @@ public class Annoucement extends Fragment {
 
                 holder.Title.setText(model.getTitle());
                 holder.date.setText(model.getDate());
-                holder.message.setText(model.getDate());
+                holder.message.setText(model.getMessage());
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {

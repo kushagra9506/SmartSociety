@@ -1,50 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="5dp"
     android:layout_margin="5dp">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"
-        android:textSize="22sp"
-        android:padding="5dp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:id="@+id/title"
-
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Message"
-        android:textSize="18sp"
-        android:padding="8dp"
-        android:id="@+id/message"
-        android:ellipsize="end"
-        android:maxLines="3"
-        />
+        android:padding="10dp">
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="Date"
-            android:textAlignment="center"
-            android:padding="5dp"
-            android:layout_margin="10dp"
-            android:textSize="15sp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="0dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            tools:text="Title here" />
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:maxLines="4"
+            android:minLines="1"
+            android:paddingBottom="10dp"
+            android:textColor="#212121"
+            android:textSize="18sp"
+            tools:text="Subtitle" />
+
+        <View
+            android:id="@+id/faint_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/message"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/time_stamp_logo"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_below="@id/faint_line"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:src="@drawable/calendar" />
+
+        <TextView
             android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/faint_line"
+            android:layout_toEndOf="@id/time_stamp_logo"
 
-            />
+            android:paddingTop="7dp"
+            android:textColor="#9E9E9E"
+            tools:text="Timestamp" />
 
-
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>
+
