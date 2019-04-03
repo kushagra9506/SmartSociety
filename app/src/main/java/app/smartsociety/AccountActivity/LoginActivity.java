@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Objects;
 
@@ -111,6 +112,11 @@ public class LoginActivity extends AppCompatActivity {
                                         assert user != null;
                                         if (user.isEmailVerified())
                                         {
+                                            FirebaseMessaging.getInstance().unsubscribeFromTopic("Fire");
+                                            FirebaseMessaging.getInstance().unsubscribeFromTopic("Intruder");
+                                            FirebaseMessaging.getInstance().unsubscribeFromTopic("Emergency");
+                                            FirebaseMessaging.getInstance().unsubscribeFromTopic("Annoucement");
+                                            FirebaseMessaging.getInstance().unsubscribeFromTopic("Event");
                                             checkadmin();
 
                                         }

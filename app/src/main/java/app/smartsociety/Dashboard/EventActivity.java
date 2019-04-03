@@ -64,7 +64,7 @@ public class EventActivity extends Fragment {
         recyclerView = v.findViewById(R.id.eventrecycler);
 
         ((Dashboard) Objects.requireNonNull(getActivity()))
-                .setActionBarTitle("Annoucement");
+                .setActionBarTitle("Events");
 
         fab = v.findViewById(R.id.eventfab);
         fab.setOnClickListener(new View.OnClickListener() {

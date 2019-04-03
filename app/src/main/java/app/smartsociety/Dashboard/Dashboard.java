@@ -40,6 +40,12 @@ public class Dashboard extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("Fire");
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("Intruder");
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("Emergency");
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("Annoucement");
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("Event");
+
 
         auth = FirebaseAuth.getInstance();
 
@@ -54,7 +60,7 @@ public class Dashboard extends AppCompatActivity
         navigationView.setItemIconTintList(null);
         View headerView = navigationView.getHeaderView(0);
         CircleImageView imageView = headerView.findViewById(R.id.navprofileimage);
-        Common common = new Common();
+
         Picasso.get().load(Common.commonregister.getImage()).into(imageView);
         TextView navUsername = (TextView) headerView.findViewById(R.id.navName);
         TextView navEmail = headerView.findViewById(R.id.navEmail);
@@ -103,8 +109,8 @@ public class Dashboard extends AppCompatActivity
             FirebaseMessaging.getInstance().unsubscribeFromTopic("Fire");
             FirebaseMessaging.getInstance().unsubscribeFromTopic("Intruder");
             FirebaseMessaging.getInstance().unsubscribeFromTopic("Emergency");
-            FirebaseMessaging.getInstance().subscribeToTopic("Annoucement");
-            FirebaseMessaging.getInstance().subscribeToTopic("Event");
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("Annoucement");
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("Event");
 
             startActivity(new Intent(this, LoginActivity.class));
             return true;

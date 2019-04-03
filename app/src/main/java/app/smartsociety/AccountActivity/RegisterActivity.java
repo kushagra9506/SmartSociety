@@ -9,12 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,10 +39,13 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 
+import java.util.ArrayList;
 import java.util.Objects;
 
+import app.smartsociety.Common.Common;
 import app.smartsociety.Model.Register;
 import app.smartsociety.R;
+import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class RegisterActivity extends AppCompatActivity {
     private final int PICK_IMAGE_REQUEST = 71;
@@ -57,6 +63,11 @@ ImageView imageView;
     ProgressBar progressBar;
     RadioButton parent,child;
     Button bt;
+    ArrayList<String> Roomno = new ArrayList<>();
+
+    Common common = new Common();
+    MaterialSpinner spinner;
+
 
 
     @Override
@@ -80,6 +91,29 @@ ImageView imageView;
         password = findViewById(R.id.regPassword);
         conpassword = findViewById(R.id.regPassword2);
         email = findViewById(R.id.regMail);
+
+
+        Roomno = common.roomno();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(RegisterActivity.this, android.R.layout.simple_spinner_item,Roomno);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != -1) {
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         parent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

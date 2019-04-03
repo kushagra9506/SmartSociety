@@ -36,6 +36,7 @@ public class dashboard_fragment extends Fragment {
     CardView annoucement,event,firealarm,intruderalarm,emergency,secretarypanel,payment,complaints;
     private RequestQueue mRequestQue;
     private String URL = "https://fcm.googleapis.com/fcm/send";
+    Common common = new Common();
 
     public dashboard_fragment() {
         // Required empty public constructor
@@ -53,7 +54,8 @@ public class dashboard_fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.v = view;
-
+        ((Dashboard) Objects.requireNonNull(getActivity()))
+                .setActionBarTitle("Events");
         annoucement = v.findViewById(R.id.dashannoucement);
         event = v.findViewById(R.id.Dashevent);
         firealarm = v.findViewById(R.id.Firealarm);
@@ -107,6 +109,7 @@ public class dashboard_fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String body = "There is fire at" + Common.commonregister.getRoomno();
+                common.createToast("Notified",getContext());
                 sendNotification("Fire",body);
             }
         });
@@ -114,6 +117,7 @@ public class dashboard_fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String body = "There is Intruder at" + Common.commonregister.getRoomno();
+                common.createToast("Notified",getContext());
                 sendNotification("Intruder",body);
             }
         });
@@ -121,6 +125,7 @@ public class dashboard_fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String body = "There is Emergency at" + Common.commonregister.getRoomno();
+                common.createToast("Notified",getContext());
                 sendNotification("Emergency",body);
             }
         });
