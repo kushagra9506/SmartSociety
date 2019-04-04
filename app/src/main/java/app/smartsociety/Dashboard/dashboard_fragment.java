@@ -132,7 +132,7 @@ public class dashboard_fragment extends Fragment {
 //
 
     }
-    private void sendNotification(String type, String body) {
+    private void sendNotification(final String type, String body) {
 
         JSONObject json = new JSONObject();
         try {
@@ -149,6 +149,7 @@ public class dashboard_fragment extends Fragment {
                         public void onResponse(JSONObject response) {
 
                             Log.d("MUR", "onResponse: ");
+                            common.createToast("onResponse",getActivity());
                         }
                     }, new Response.ErrorListener() {
                 @Override

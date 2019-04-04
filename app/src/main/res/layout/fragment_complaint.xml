@@ -1,6 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1.5"
+        android:id="@+id/linearlayout">
 
-</android.support.constraint.ConstraintLayout>
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+
+            android:layout_weight="0.5"
+            android:id="@+id/Unresolved"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Unresolved"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_centerHorizontal="true"
+
+                    />
+            </RelativeLayout>
+
+
+
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:id="@+id/faint_line"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/darker_gray" />
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+
+            android:layout_weight="0.5"
+            android:id="@+id/Resolved">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                   android:layout_centerVertical="true"
+
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:text="Resolved"
+                    android:textAlignment="center"
+                    android:layout_centerHorizontal="true"
+
+                    />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+        <View
+
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/darker_gray" />
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+
+            android:layout_weight="0.5"
+            android:id="@+id/personalcomplaint">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:text="Your Complaint"
+                    android:textAlignment="center"
+                    android:layout_centerHorizontal="true"
+
+                    />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/linearlayout"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:id="@+id/complaintrecycler"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/comfab"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:scaleType="fitXY"
+        app:maxImageSize="56dp"
+        android:padding="10dp"
+        app:fabCustomSize="65dp"
+        app:backgroundTint="@android:color/white"
+        app:srcCompat="@drawable/add"
+
+        />
+
+</RelativeLayout>

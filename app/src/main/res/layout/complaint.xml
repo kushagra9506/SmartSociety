@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+
+
+        <TextView
+            android:id="@+id/complaint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/eventname"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:maxLines="4"
+            android:minLines="1"
+            android:paddingBottom="10dp"
+            android:textColor="#212121"
+            android:textSize="18sp"
+            tools:text="Subtitle" />
+
+        <View
+            android:id="@+id/faint_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/complaint"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/time_stamp_logo"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_below="@id/faint_line"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:src="@drawable/calendar" />
+
+        <TextView
+            android:id="@+id/complaintdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/faint_line"
+            android:layout_toEndOf="@id/time_stamp_logo"
+
+            android:paddingTop="7dp"
+            android:textColor="#9E9E9E"
+            tools:text="Timestamp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resolved"
+            android:background="@drawable/reg_btn_style"
+            android:textAlignment="center"
+            android:textSize="14sp"
+
+            android:id="@+id/bt_resolved"
+            android:textColor="@color/colorWhite"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:layout_below="@id/faint_line"
+            android:layout_alignParentEnd="true"
+
+            />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
