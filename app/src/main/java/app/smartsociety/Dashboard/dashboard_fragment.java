@@ -85,6 +85,16 @@ public class dashboard_fragment extends Fragment {
 
 
 
+        secretarypanel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.dashframe,new SecretaryFragment());
+                ft.addToBackStack(null);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.commit();
+            }
+        });
         annoucement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
