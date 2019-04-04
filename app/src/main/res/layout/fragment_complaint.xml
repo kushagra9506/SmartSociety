@@ -44,8 +44,6 @@
             android:id="@+id/faint_line"
             android:layout_width="1dp"
             android:layout_height="match_parent"
-
-            android:layout_marginBottom="5dp"
             android:background="@android:color/darker_gray" />
 
 
@@ -85,7 +83,6 @@
             android:layout_width="1dp"
             android:layout_height="match_parent"
 
-            android:layout_marginBottom="5dp"
             android:background="@android:color/darker_gray" />
 
 
