@@ -70,7 +70,7 @@ public class dashboard_fragment extends Fragment {
             secretarypanel.setVisibility(View.GONE);
         }
 
-        mRequestQue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
+        mRequestQue = Volley.newRequestQueue(Objects.requireNonNull(getContext()));
 
         complaints.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +139,7 @@ public class dashboard_fragment extends Fragment {
         emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String body = "There is Emergency at" + Common.commonregister.getRoomno();
                 common.createToast("Notified",getContext());
                 sendNotification("Emergency",body);
@@ -164,7 +165,6 @@ public class dashboard_fragment extends Fragment {
                         public void onResponse(JSONObject response) {
 
                             Log.d("MUR", "onResponse: ");
-                            common.createToast("onResponse",getActivity());
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -177,7 +177,7 @@ public class dashboard_fragment extends Fragment {
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String,String> header = new HashMap<>();
                     header.put("content-type","application/json");
-                    header.put("authorization","key=\n" + "AIzaSyB92EFgKJy33tubZrwnNli0o6jCMq-JOJ8");
+                    header.put("authorization","key=AIzaSyB92EFgKJy33tubZrwnNli0o6jCMq-JOJ8");
                     return header;
                 }
             };

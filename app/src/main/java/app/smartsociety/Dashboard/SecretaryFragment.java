@@ -38,7 +38,7 @@ public class SecretaryFragment extends Fragment {
 
     ArrayList<String>  userroomno = new ArrayList<>();
     Boolean aBoolean = false;
-    DateFormat df = new SimpleDateFormat("d MMM yyyy");
+    DateFormat df = new SimpleDateFormat("dd MMM yyyy");
 
 
     public SecretaryFragment() {
@@ -47,7 +47,7 @@ public class SecretaryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.dashboard_fragment, container, false);
+        return inflater.inflate(R.layout.secretary_fragment, container, false);
     }
 
     @Override
@@ -56,8 +56,8 @@ public class SecretaryFragment extends Fragment {
 
         this.v = view;
         main = v.findViewById(R.id.maintainaince);
-        amount = Integer.valueOf(main.getText().toString());
-        gener = v.findViewById(R.id.generatepay);
+
+        gener = v.findViewById(R.id.addmaintain);
         genscrol = v.findViewById(R.id.generaterelat);
 
         user = FirebaseDatabase.getInstance().getReference("Register");
@@ -79,7 +79,7 @@ public class SecretaryFragment extends Fragment {
         gener.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                amount = Integer.valueOf(main.getText().toString());
                 String date = df.format(Calendar.getInstance().getTime());
                 for (int i=0;i<userroomno.size();i++){
                     String Key =  gen.push().getKey();
