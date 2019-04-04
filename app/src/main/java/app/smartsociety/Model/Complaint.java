@@ -1,17 +1,26 @@
 package app.smartsociety.Model;
 
 public class Complaint {
-    String complaint,date,uid;
+    String complaint,date,uid,image;
     Boolean resolved;
 
     public Complaint() {
     }
 
-    public Complaint(String complaint, String date, String uid, Boolean resolved) {
+    public Complaint(String complaint, String date, String uid, String image, Boolean resolved) {
         this.complaint = complaint;
         this.date = date;
         this.uid = uid;
+        this.image = image;
         this.resolved = resolved;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getComplaint() {

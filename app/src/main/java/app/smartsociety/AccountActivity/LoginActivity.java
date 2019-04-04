@@ -121,6 +121,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                         }
                                         else{
+                                            progressBar.setVisibility(View.INVISIBLE);
+                                            btnlogin.setVisibility(View.VISIBLE);
                                             createtoast("Please verify your email to access the Application");
                                         }
 

@@ -21,6 +21,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -74,6 +76,9 @@ public class ComplaintFragment extends Fragment {
         
         com = v.findViewById(R.id.comfab);
 
+        fdb = FirebaseDatabase
+                .getInstance().getReference("Complaints");
+
         recyclerView = v.findViewById(R.id.complaintrecycler);
 
         layoutManager = new LinearLayoutManager(getContext());
@@ -87,6 +92,11 @@ public class ComplaintFragment extends Fragment {
                 showupdate(getContext());
             }
         });
+
+        complaint = new FirebaseRecyclerOptions.Builder<Complaint>().setQuery(
+                fdb.orderByChild("resolved").equalTo(false)
+                ,Complaint.class).build();
+        loadcomplaint(complaint);
 
         unresolved.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,7 +160,7 @@ public class ComplaintFragment extends Fragment {
                 }else {
                     dialog.dismiss();
                     String date = df.format(Calendar.getInstance().getTime());
-                    Complaint complaint = new Complaint(updatevisitroom.getText().toString(),date,auth.getUid(),false);
+                    Complaint complaint = new Complaint(updatevisitroom.getText().toString(),date,auth.getUid(),Common.commonregister.getImage(),false);
 
 
                     fdb.push().setValue(complaint);
@@ -186,20 +196,22 @@ public class ComplaintFragment extends Fragment {
 
                 holder.name.setText(model.getComplaint());
                 holder.date.setText(model.getDate());
+                Picasso.get().load(model.getImage()).into(holder.imageViewl);
                 
                 if (model.getResolved()){
                     holder.resolved.setVisibility(View.GONE);
                 }
                 else{
-                    if (model.getUid().equals(auth.getUid())){
+                    if (model.getUid().equals(auth.getUid())) {
                         holder.resolved.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 fdb.child(Objects.requireNonNull(adapter.getRef(position).getKey())).child("resolved").setValue(true);
                             }
                         });
-                    }else{
-                        common.createToast("You are not right user to update",getContext());
+                    }
+                    else{
+                    holder.resolved.setVisibility(View.INVISIBLE);
                     }
 
 

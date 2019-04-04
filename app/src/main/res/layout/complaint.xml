@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="150dp"
     xmlns:tools="http://schemas.android.com/tools">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/complaintownimage"
+            android:layout_margin="5dp"
+            />
 
 
 
@@ -19,12 +26,15 @@
             android:layout_marginTop="5dp"
             android:maxLines="4"
             android:minLines="1"
+            android:layout_toEndOf="@+id/complaintownimage"
+
             android:paddingBottom="10dp"
             android:textColor="#212121"
             android:textSize="18sp"
             tools:text="Subtitle" />
 
         <View
+            android:layout_toEndOf="@+id/complaintownimage"
             android:id="@+id/faint_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -33,6 +43,7 @@
             android:background="@android:color/darker_gray" />
 
         <ImageView
+            android:layout_toEndOf="@+id/complaintownimage"
             android:id="@+id/time_stamp_logo"
             android:layout_width="34dp"
             android:layout_height="34dp"

@@ -55,7 +55,7 @@ public class dashboard_fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.v = view;
         ((Dashboard) Objects.requireNonNull(getActivity()))
-                .setActionBarTitle("Events");
+                .setActionBarTitle("Dashboard");
         annoucement = v.findViewById(R.id.dashannoucement);
         event = v.findViewById(R.id.Dashevent);
         firealarm = v.findViewById(R.id.Firealarm);
@@ -64,6 +64,11 @@ public class dashboard_fragment extends Fragment {
         intruderalarm = v.findViewById(R.id.Intruder);
         emergency = v.findViewById(R.id.Emergency);
         secretarypanel = v.findViewById(R.id.DashAdminPanel);
+
+
+        if(!Common.admin){
+            secretarypanel.setVisibility(View.GONE);
+        }
 
         mRequestQue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
 
