@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -21,7 +22,9 @@ import java.util.Objects;
 
 import app.smartsociety.Common.Common;
 import app.smartsociety.Dashboard.Dashboard;
+import app.smartsociety.GateKeeper.GateDash;
 import app.smartsociety.Model.Register;
+import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tv;
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.splash_transition);
         tv.startAnimation(anim);
         iv.startAnimation(anim);
+
+        Paper.init(this);
+        Common common = new Common();
 
         final Intent i = new Intent(this, Welcome_slider_1.class);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -69,25 +75,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkadmin() {
-        DatabaseReference fdb = FirebaseDatabase.getInstance().getReference("Register");
 
-        fdb.child(Objects.requireNonNull(auth.getUid())).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    Register register = dataSnapshot.getValue(Register.class);
-                    assert register != null;
-                    Common.admin = register.getAdmin();
-                    Common.commonregister = register;
-                    loadnext();
+        String user = Paper.book().read(Common.user);
+
+        if (user.contains("gatekeeper")){
+            startActivity(new Intent(this, GateDash.class));
+            finish();
+        }
+        else {
+            DatabaseReference fdb = FirebaseDatabase.getInstance().getReference("Register");
+
+            fdb.child(Objects.requireNonNull(auth.getUid())).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        Register register = dataSnapshot.getValue(Register.class);
+                        assert register != null;
+                        Common.admin = register.getAdmin();
+                        Common.commonregister = register;
+                        loadnext();
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+
+        }
+
+
     }
 
     private void loadnext() {

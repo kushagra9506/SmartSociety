@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +38,11 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -54,6 +57,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
+import app.smartsociety.AccountActivity.LoginActivity;
 import app.smartsociety.AccountActivity.RegisterActivity;
 import app.smartsociety.Common.Common;
 import app.smartsociety.Dashboard.Addannoucement;
@@ -66,7 +70,7 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 public class GateDash extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 71;
-    RelativeLayout addvisitor,visitordet;
+    RelativeLayout addvisitor,visitordet,emergencyrel;
     EditText name,contact,roomno,updatevisitroom;
     ImageView imageView;
     final int CAMERA_PICK_CODE_REQUEST = 71;
@@ -76,6 +80,8 @@ public class GateDash extends AppCompatActivity {
     DatabaseReference db;
     DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm");
 
+
+
     private EditText mSearchField;
 
     Common common = new Common();
@@ -84,6 +90,7 @@ public class GateDash extends AppCompatActivity {
     FirebaseRecyclerAdapter<Visitor, VisitorViewHolder> adapter;
     private FirebaseRecyclerOptions<Visitor> visitor;
     MaterialSpinner spinner;
+
 
     ProgressDialog progressDialog;
     FirebaseStorage storage;
@@ -95,6 +102,8 @@ public class GateDash extends AppCompatActivity {
     FirebaseRecyclerAdapter<Visitor, VisitorViewHolder> searchadapter;
     private FirebaseRecyclerOptions<Visitor> searchvisitor;
     private String sroomno;
+    private FirebaseAuth auth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +111,11 @@ public class GateDash extends AppCompatActivity {
         setContentView(R.layout.activity_gate_dash);
 
         storage = FirebaseStorage.getInstance();
+        FirebaseMessaging.getInstance().subscribeToTopic("Fire");
+        FirebaseMessaging.getInstance().subscribeToTopic("Intruder");
+        FirebaseMessaging.getInstance().subscribeToTopic("Emergency");
 
+        auth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
         addvisitor = findViewById(R.id.visitorlayout);
         visitordet = findViewById(R.id.visitingdetlayout);
@@ -113,6 +126,7 @@ public class GateDash extends AppCompatActivity {
         mSearchField = findViewById(R.id.search_field);
         Roomno = common.roomno();
 
+        emergencyrel = findViewById(R.id.emergencyrel);
         db = FirebaseDatabase.getInstance().getReference("Visitor");
         mstorage = storage.getReference("Visitorimages/");
 
@@ -169,6 +183,34 @@ public class GateDash extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.dashboard, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.signout) {
+            auth.signOut();
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("Fire");
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("Intruder");
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("Emergency");
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("Annoucement");
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("Event");
+
+            startActivity(new Intent(this, LoginActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     private void loaddetail() {
         visitor = new FirebaseRecyclerOptions.Builder<Visitor>().setQuery(
                 db
@@ -207,12 +249,14 @@ public class GateDash extends AppCompatActivity {
     public void addvisitor(View view) {
         visitordet.setVisibility(View.GONE);
         addvisitor.setVisibility(View.VISIBLE);
+        emergencyrel.setVisibility(View.GONE);
 
     }
 
     public void showvisitor(View view) {
         visitordet.setVisibility(View.VISIBLE);
         addvisitor.setVisibility(View.GONE);
+        emergencyrel.setVisibility(View.GONE);
 
         loaddetail();
     }
@@ -460,5 +504,32 @@ public class GateDash extends AppCompatActivity {
         };
         adapter.startListening();
         recyclerView.setAdapter(adapter);
+    }
+
+    public void Emergency(View view) {
+        visitordet.setVisibility(View.GONE);
+        addvisitor.setVisibility(View.GONE);
+
+        emergencyrel.setVisibility(View.VISIBLE);
+
+    }
+
+    public void emergency(View view) {
+        String body = "There is Emergency at";
+        common.createToast("Notified",this);
+        common.sendNotification("Fire",body,this);
+
+    }
+
+    public void Firealarm(View view) {
+        String body = "There is Fire at building";
+        common.createToast("Notified",this);
+        common.sendNotification("Fire",body,this);
+    }
+
+    public void Intruder(View view) {
+        String body = "There is Intruder at building";
+        common.createToast("Notified",this);
+        common.sendNotification("Intruder",body,this);
     }
 }

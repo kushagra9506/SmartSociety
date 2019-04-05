@@ -10,12 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="1"
+        android:weightSum="1.5"
         android:id="@+id/linearlayout">
 
         <android.support.v7.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
 
             android:layout_weight="0.5"
             android:onClick="addvisitor">
@@ -25,8 +25,8 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="5dp"
                     android:id="@+id/visitorentry"
                     android:src="@drawable/addvisitor"
@@ -51,7 +51,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
 
             android:layout_weight="0.5"
             android:onClick="showvisitor">
@@ -65,8 +65,8 @@
 
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:id="@+id/visitors"
                     android:src="@drawable/visitor"
                     android:layout_margin="5dp"
@@ -82,6 +82,46 @@
                     android:textStyle="bold"
                     android:textSize="20sp"
                     android:text="Visitor details"
+                    android:textAlignment="center"
+                    android:layout_centerHorizontal="true"
+
+                    />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+
+            android:layout_weight="0.5"
+            android:onClick="Emergency">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/gateEmergency"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/alert" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/gateEmergency"
+
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:text="Emergency"
                     android:textAlignment="center"
                     android:layout_centerHorizontal="true"
 
@@ -236,6 +276,177 @@
             android:id="@+id/visitorrecycler">
 
         </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/emergencyrel"
+        android:layout_below="@id/linearlayout"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:id="@+id/gatelinearlayout">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/gateFirealarm"
+                android:layout_width="0dp"
+                android:onClick="Firealarm"
+                android:layout_height="150dp"
+                android:layout_weight="0.5">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/dashfirealarm"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/firealarm" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/dashfirealarm"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Fire Alarm"
+                        android:textAlignment="center"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+
+                        />
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+            <View
+
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/darker_gray" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+
+                android:layout_weight="0.5"
+                android:onClick="Intruder"
+                android:id="@+id/gateIntruder">
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/gateintruder"
+                        android:src="@drawable/intruder"
+                        android:layout_margin="5dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/gateintruder"
+
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="Intruder"
+                        android:textAlignment="center"
+                        android:layout_centerHorizontal="true"
+
+                        />
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+
+            android:layout_below="@+id/gatelinearlayout"
+            android:background="@android:color/darker_gray"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_below="@id/gatelinearlayout"
+            android:id="@+id/linearlayout4">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+
+                android:layout_weight="0.5"
+                android:onClick="emergency"
+                android:id="@+id/gateEmergencyalarm">
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/gateemergency"
+                        android:src="@drawable/emergency"
+                        android:layout_margin="5dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/gateemergency"
+
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="Emergency"
+                        android:textAlignment="center"
+                        android:layout_centerHorizontal="true"
+
+                        />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+            <View
+
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+
+
+                android:background="@android:color/darker_gray" />
+
+
+
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 

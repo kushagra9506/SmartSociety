@@ -10,6 +10,8 @@ import android.widget.TextView;
 import app.smartsociety.Common.Common;
 import app.smartsociety.R;
 
+import static app.smartsociety.Common.Common.admin;
+
 public class VisitorViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener {
 
     public  TextView name,contact,roomno,intime,outime;
@@ -25,6 +27,8 @@ public class VisitorViewHolder extends RecyclerView.ViewHolder implements View.O
         intime = (itemView).findViewById(R.id.visitorintime);
         personimage = (itemView).findViewById(R.id.visitorimage);
         outime = (itemView).findViewById(R.id.visitorouttime);
+
+        if (Common.admin)
         itemView.setOnCreateContextMenuListener(this);
 
     }

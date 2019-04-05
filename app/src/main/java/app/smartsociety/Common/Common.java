@@ -31,6 +31,8 @@ public class Common {
     private String URL = "https://fcm.googleapis.com/fcm/send";
     public static Boolean admin = false;
 
+    public final static String user = "user";
+
 
     public static final String Update="Update";
     public static final String Delete="Delete";
@@ -77,13 +79,14 @@ public class Common {
             notificationObj.put("body",body);
             json.put("notification",notificationObj);
 
+
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL,
                     json,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
 
-                            Log.d("MUR", "onResponse: ");
+                            Log.d("MUR", "onResponse: "+response);
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -96,7 +99,7 @@ public class Common {
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String,String> header = new HashMap<>();
                     header.put("content-type","application/json");
-                    header.put("authorization","key=\n" + "AIzaSyB92EFgKJy33tubZrwnNli0o6jCMq-JOJ8");
+                    header.put("authorization","key=AIzaSyB92EFgKJy33tubZrwnNli0o6jCMq-JOJ8");
                     return header;
                 }
             };

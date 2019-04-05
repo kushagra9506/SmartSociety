@@ -31,6 +31,7 @@ import app.smartsociety.Dashboard.Dashboard;
 import app.smartsociety.GateKeeper.GateDash;
 import app.smartsociety.Model.Register;
 import app.smartsociety.R;
+import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
     EditText email,password;
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.login_progress);
         btnlogin = findViewById(R.id.loginBtn);
         fdb = FirebaseDatabase.getInstance().getReference("Register");
+        Paper.init(this);
 
 
         auth = FirebaseAuth.getInstance();
@@ -79,13 +81,16 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                          progressBar.setVisibility(View.INVISIBLE);
+                         btnlogin.setVisibility(View.VISIBLE);
                          startActivity(new Intent(LoginActivity.this, GateDash.class));
+                         Paper.book().write(Common.user,semail);
                         }
                         else{
                             try {
                                 throw Objects.requireNonNull(task.getException());
                             } catch (FirebaseAuthInvalidCredentialsException e)
                             {
+
                                 progressBar.setVisibility(View.INVISIBLE);
                                 btnlogin.setVisibility(View.VISIBLE);
                                 Toast.makeText(LoginActivity.this,"Authentication Failed",Toast.LENGTH_LONG).show();
@@ -112,15 +117,13 @@ public class LoginActivity extends AppCompatActivity {
                                         assert user != null;
                                         if (user.isEmailVerified())
                                         {
-                                            FirebaseMessaging.getInstance().unsubscribeFromTopic("Fire");
-                                            FirebaseMessaging.getInstance().unsubscribeFromTopic("Intruder");
-                                            FirebaseMessaging.getInstance().unsubscribeFromTopic("Emergency");
-                                            FirebaseMessaging.getInstance().unsubscribeFromTopic("Annoucement");
-                                            FirebaseMessaging.getInstance().unsubscribeFromTopic("Event");
+                                            Paper.book().write(Common.user,semail);
+
                                             checkadmin();
 
                                         }
                                         else{
+                                            Paper.book().write(Common.user,semail);
                                             progressBar.setVisibility(View.INVISIBLE);
                                             btnlogin.setVisibility(View.VISIBLE);
                                             createtoast("Please verify your email to access the Application");
@@ -189,6 +192,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadnext() {
+
+        FirebaseMessaging.getInstance().subscribeToTopic("Fire");
+        FirebaseMessaging.getInstance().subscribeToTopic("Intruder");
+        FirebaseMessaging.getInstance().subscribeToTopic("Emergency");
+        FirebaseMessaging.getInstance().subscribeToTopic("Annoucement");
+        FirebaseMessaging.getInstance().subscribeToTopic("Event");
         progressBar.setVisibility(View.INVISIBLE);
         btnlogin.setVisibility(View.VISIBLE);
         startActivity(new Intent(LoginActivity.this, Dashboard.class));

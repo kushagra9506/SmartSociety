@@ -27,6 +27,7 @@ import app.smartsociety.AccountActivity.LoginActivity;
 import app.smartsociety.Common.Common;
 import app.smartsociety.R;
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.paperdb.Paper;
 
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,11 +41,11 @@ public class Dashboard extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FirebaseMessaging.getInstance().unsubscribeFromTopic("Fire");
-        FirebaseMessaging.getInstance().unsubscribeFromTopic("Intruder");
-        FirebaseMessaging.getInstance().unsubscribeFromTopic("Emergency");
-        FirebaseMessaging.getInstance().unsubscribeFromTopic("Annoucement");
-        FirebaseMessaging.getInstance().unsubscribeFromTopic("Event");
+        FirebaseMessaging.getInstance().subscribeToTopic("Fire");
+        FirebaseMessaging.getInstance().subscribeToTopic("Intruder");
+        FirebaseMessaging.getInstance().subscribeToTopic("Emergency");
+        FirebaseMessaging.getInstance().subscribeToTopic("Annoucement");
+        FirebaseMessaging.getInstance().subscribeToTopic("Event");
 
 
         auth = FirebaseAuth.getInstance();
@@ -106,6 +107,7 @@ public class Dashboard extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.signout) {
             auth.signOut();
+            Paper.book().destroy();
             FirebaseMessaging.getInstance().unsubscribeFromTopic("Fire");
             FirebaseMessaging.getInstance().unsubscribeFromTopic("Intruder");
             FirebaseMessaging.getInstance().unsubscribeFromTopic("Emergency");
