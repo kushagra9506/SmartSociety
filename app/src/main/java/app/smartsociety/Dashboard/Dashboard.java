@@ -148,7 +148,11 @@ public class Dashboard extends AppCompatActivity
             startActivity(new Intent(this,PaymentActivity.class));
         } else if (id == R.id.navsetting) {
 
-        } else if (id == R.id.navmembers) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.dashframe,new SettingFragment());
+            ft.addToBackStack(null);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
 
         }
 

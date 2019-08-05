@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/setprofileimage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_margin="20dp" />
+            <TextView
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:text="Name"
+                />
+
+            <TextView
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/setprofname"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                />
+            <TextView
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:text="Roomno"
+                />
+            <TextView
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/setprofroomno"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                />
+
+            <TextView
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:text="Phone no"
+                />
+
+            <TextView
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/setprofphone"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                />
+
+            <TextView
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:text="Email :"
+                />
+            <TextView
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/setprofemail"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <TextView
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:text="Pin no :"
+                />
+
+            <RelativeLayout
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/setprofmpin"
+                    android:text="*********"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/openeye"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/seteye"
+                    android:background="@color/colorWhite"/>
+
+            </RelativeLayout>
+
+
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/reg_btn_style"
+                    android:text="Edit"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    android:visibility="gone"
+                    android:id="@+id/seteditbtn"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/setresetpass"
+                android:visibility="gone"
+                android:text="Click here to Reset Your Password"
+                android:textAlignment="center"
+                android:layout_marginBottom="20dp"
+
+                />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

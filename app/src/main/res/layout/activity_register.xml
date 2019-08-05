@@ -70,6 +70,18 @@
 
             <EditText
                 android:background="@drawable/reg_edittext_style"
+                android:id="@+id/regPhone"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:inputType="phone"
+                android:hint="Phone no"
+                android:layout_marginTop="20dp"
+                />
+
+            <EditText
+                android:background="@drawable/reg_edittext_style"
                 android:hint="Password"
                 android:id="@+id/regPassword"
                 android:layout_width="265dp"
@@ -89,6 +101,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:ems="10"
+                android:layout_gravity="center"
+                android:inputType="textPassword"
+                />
+            <EditText
+                android:background="@drawable/reg_edittext_style"
+                android:hint="Create Pin"
+                android:id="@+id/regpin"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:maxLength="4"
                 android:layout_gravity="center"
                 android:inputType="textPassword"
                 />

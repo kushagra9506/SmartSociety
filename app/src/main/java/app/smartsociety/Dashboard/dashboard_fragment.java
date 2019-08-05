@@ -1,5 +1,8 @@
 package app.smartsociety.Dashboard;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -83,6 +88,12 @@ public class dashboard_fragment extends Fragment {
             }
         });
 
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),PaymentActivity.class));
+            }
+        });
 
 
         secretarypanel.setOnClickListener(new View.OnClickListener() {
@@ -123,30 +134,73 @@ public class dashboard_fragment extends Fragment {
         firealarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String body = "There is fire at" + Common.commonregister.getRoomno();
-                common.createToast("Notified",getContext());
-                sendNotification("Fire",body);
+
+                showupdate("Fire");
+
             }
         });
         intruderalarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String body = "There is Intruder at" + Common.commonregister.getRoomno();
-                common.createToast("Notified",getContext());
-                sendNotification("Intruder",body);
+                showupdate("Intruder");
+
             }
         });
         emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String body = "There is Emergency at" + Common.commonregister.getRoomno();
-                common.createToast("Notified",getContext());
-                sendNotification("Emergency",body);
+                showupdate("Emergency");
+
             }
         });
 //
 
+    }
+
+    private void showupdate(final String type) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+        alertDialog.setTitle("Verify the password");
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View updatevisitor = inflater.inflate(R.layout.password,null);
+        final EditText  updatevisitroom;
+        updatevisitroom = updatevisitor.findViewById(R.id.mpinverify);
+
+
+
+
+
+
+
+
+
+        alertDialog.setView(updatevisitor);
+        alertDialog.setIcon(R.drawable.add);
+
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                //New Cat will be added
+
+                if (updatevisitroom.getText().toString().isEmpty()){
+                        Toast.makeText(getContext(),"Please enter the Room no",Toast.LENGTH_SHORT).show();
+                }else if (updatevisitroom.getText().toString().equals(Common.commonregister.getMpin())){
+                    dialog.dismiss();
+                    String body = "There is "+ type +" at " + Common.commonregister.getRoomno();
+                    common.createToast("Notified",getContext());
+                    sendNotification(type,body);
+                }
+
+            }
+        });
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertDialog.show();
     }
     private void sendNotification(final String type, String body) {
 

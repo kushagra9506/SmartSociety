@@ -2,21 +2,39 @@ package app.smartsociety.Model;
 
 public class Register {
 
-    String name,roomno,email,password,image;
+    String name,roomno,email,password,image,mpin,phone;
     Boolean head,admin;
 
     public Register() {
     }
 
 
-    public Register(String name, String roomno, String email, String password, String image, Boolean head, Boolean admin) {
+    public Register(String name, String roomno, String email, String password, String image, String mpin, String phone, Boolean head, Boolean admin) {
         this.name = name;
         this.roomno = roomno;
         this.email = email;
         this.password = password;
         this.image = image;
+        this.mpin = mpin;
+        this.phone = phone;
         this.head = head;
         this.admin = admin;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getMpin() {
+        return mpin;
+    }
+
+    public void setMpin(String mpin) {
+        this.mpin = mpin;
     }
 
     public String getName() {

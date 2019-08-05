@@ -28,7 +28,7 @@ public class VisitorViewHolder extends RecyclerView.ViewHolder implements View.O
         personimage = (itemView).findViewById(R.id.visitorimage);
         outime = (itemView).findViewById(R.id.visitorouttime);
 
-        if (Common.admin)
+
         itemView.setOnCreateContextMenuListener(this);
 
     }

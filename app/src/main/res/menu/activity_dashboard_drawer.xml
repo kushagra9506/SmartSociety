@@ -31,11 +31,8 @@
             <item
                 android:id="@+id/navsetting"
                 android:icon="@drawable/settings"
-                android:title="Setting" />
-            <item
-                android:id="@+id/navmembers"
-                android:icon="@drawable/member"
-                android:title="Family Members" />
+                android:title="Profile" />
+
         </menu>
     </item>
 

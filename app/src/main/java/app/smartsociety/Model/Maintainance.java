@@ -2,13 +2,14 @@ package app.smartsociety.Model;
 
 public class Maintainance {
 
-    String key,roomno,transactionid,paidby,paymentdate,paymentid,date;
+    String key,roomno,transactionid,paidby,paymentdate,paymentid,date,title,payerid;
     Boolean paid;
-    int amount;
+    long amount;
 
+    public Maintainance() {
+    }
 
-    public Maintainance(String key, String roomno, String transactionid, String paidby,
-                        String paymentdate, String paymentid, String date, Boolean paid, int amount) {
+    public Maintainance(String key, String roomno, String transactionid, String paidby, String paymentdate, String paymentid, String date, String title, String payerid, Boolean paid, long amount) {
         this.key = key;
         this.roomno = roomno;
         this.transactionid = transactionid;
@@ -16,8 +17,26 @@ public class Maintainance {
         this.paymentdate = paymentdate;
         this.paymentid = paymentid;
         this.date = date;
+        this.title = title;
+        this.payerid = payerid;
         this.paid = paid;
         this.amount = amount;
+    }
+
+    public String getPayerid() {
+        return payerid;
+    }
+
+    public void setPayerid(String payerid) {
+        this.payerid = payerid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDate() {
@@ -36,11 +55,11 @@ public class Maintainance {
         this.key = key;
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(long amount) {
         this.amount = amount;
     }
 

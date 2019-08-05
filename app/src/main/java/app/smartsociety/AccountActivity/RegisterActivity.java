@@ -53,12 +53,12 @@ DatabaseReference fdb,roomdet;
 
 FirebaseUser user;
 FirebaseAuth auth;
-EditText name,roomno,password,conpassword,email;
+EditText name,roomno,password,conpassword,email,mpin,phoneno;
 ImageView imageView;
     private Uri mImageUri;
     private StorageReference storageReference;
     private String profileimage;
-    String sname,sroomno,spassword,sconpassword,semail;
+    String sname,sroomno,spassword,sconpassword,semail,smpin,sphone;
     Boolean head = false;
     ProgressBar progressBar;
     RadioButton parent,child;
@@ -91,6 +91,8 @@ ImageView imageView;
         password = findViewById(R.id.regPassword);
         conpassword = findViewById(R.id.regPassword2);
         email = findViewById(R.id.regMail);
+        mpin  = findViewById(R.id.regpin);
+        phoneno = findViewById(R.id.regPhone);
 
 
 
@@ -172,8 +174,10 @@ ImageView imageView;
             spassword = password.getText().toString();
             sconpassword = conpassword.getText().toString();
             semail = email.getText().toString();
+            smpin = mpin.getText().toString();
+            sphone = phoneno.getText().toString();
 
-            if (!sname.isEmpty() && !sroomno.isEmpty() && !sconpassword.isEmpty() && !semail.isEmpty() && !spassword.isEmpty())
+            if (!sname.isEmpty() && !sroomno.isEmpty() && !sconpassword.isEmpty() && !semail.isEmpty() && !spassword.isEmpty() && !smpin.isEmpty() && !sphone.isEmpty())
             {
                 if (spassword.equals(sconpassword)){
                     auth.createUserWithEmailAndPassword(semail, spassword)
@@ -226,7 +230,7 @@ ImageView imageView;
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if (task.isSuccessful()){
-                                                            Register register = new Register(sname,sroomno,semail,spassword,profileimage,head,false);
+                                                            Register register = new Register(sname,sroomno,semail,spassword,profileimage,smpin,sphone,head,false);
                                                             fdb.child(Objects.requireNonNull(auth.getUid())).setValue(register);
                                                             bt.setVisibility(View.VISIBLE);
                                                             progressBar.setVisibility(View.INVISIBLE);
